@@ -2,15 +2,16 @@
 
 namespace TexGenPlus.Effects;
 
-[Icon( "refresh" )]
-public class RotateEffect : TextureGeneratorEffect
+[Icon( "light_mode" )]
+public class BrightnessEffect : TextureGeneratorEffect
 {
-	[Property, KeyProperty, Range( 0, 360 )]
+	[Property, KeyProperty, Range( 0, 2 )]
 	public float Amount { get; set; } = 0;
 
 	public override Bitmap Apply( Bitmap bitmap )
 	{
-		return bitmap.Rotate( Amount );
+		bitmap.Adjust( brightness: Amount );
+		return bitmap;
 	}
 
 	public override int GetHashCode()
