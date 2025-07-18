@@ -96,15 +96,15 @@
                 "$source": "imagefile",
                 "data": {
                   "FilePath": "ninja frog/double jump (32x32).png",
-                  "MaxSize": 4109,
+                  "MaxSize": 4110,
                   "ConvertHeightToNormals": false,
                   "NormalScale": 1,
                   "Rotate": 0,
                   "FlipVertical": false,
                   "FlipHorizontal": false,
                   "Cropping": {
-                    "Size": "159.3012,0",
-                    "EdgeSize": "159.3012,0"
+                    "Size": "0,0",
+                    "EdgeSize": "0,0"
                   },
                   "Padding": {
                     "Size": "0,0",
@@ -122,16 +122,45 @@
                   "TargetColor": "0,1,0,1",
                   "CacheToDisk": true
                 },
-                "compiled": null
+                "compiled": "textures/generated/imagefile/3c3848789fe6893e.vtex"
               },
               "Effects": [
                 {
+                  "Type": "TexGenPlus.Effects.CropEffect",
+                  "Data": {
+                    "Cropping": {
+                      "Size": "160,0",
+                      "EdgeSize": "160,0"
+                    },
+                    "Enabled": true
+                  }
+                },
+                {
+                  "Type": "TexGenPlus.Effects.PaddingEffect",
+                  "Data": {
+                    "Padding": {
+                      "Size": "-2,6",
+                      "EdgeSize": "-2,6"
+                    },
+                    "Enabled": false
+                  }
+                },
+                {
                   "Type": "TexGenPlus.Effects.TintEffect",
                   "Data": {
-                    "TintColor": "0.76744,0.14278,0.14278,1"
+                    "TintColor": "1,0,0,1",
+                    "Enabled": true
+                  }
+                },
+                {
+                  "Type": "TexGenPlus.Effects.RotateEffect",
+                  "Data": {
+                    "Amount": -90,
+                    "Enabled": true
                   }
                 }
-              ]
+              ],
+              "RandomNumber": -1945482767
             },
             "compiled": null
           },

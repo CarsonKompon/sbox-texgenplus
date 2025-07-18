@@ -108,6 +108,9 @@ public class TextureGeneratorPlus : TextureGenerator
 
 		foreach ( var effect in Effects )
 		{
+			if ( effect is null || !effect.Enabled )
+				continue;
+
 			bitmap = effect?.Apply( bitmap );
 		}
 

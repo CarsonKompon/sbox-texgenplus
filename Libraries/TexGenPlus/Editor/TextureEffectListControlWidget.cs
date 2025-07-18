@@ -425,6 +425,18 @@ public class ListControlWidget : ControlWidget
 				}
 
 				Layout.Add( control );
+
+				if ( val is TextureGeneratorEffect effect )
+				{
+					var btnVisible = Layout.Add( new IconButton( effect.Enabled ? "visibility" : "visibility_off" ) );
+					btnVisible.OnClick = () =>
+					{
+						effect.Enabled = !effect.Enabled;
+						btnVisible.Icon = (effect.Enabled ? "visibility" : "visibility_off");
+					};
+					btnVisible.ToolTip = "Toggle Visibility";
+				}
+
 				Layout.Add( removeButton );
 
 				dragHandle.MouseRightClick += () =>

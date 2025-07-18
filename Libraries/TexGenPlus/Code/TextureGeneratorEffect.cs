@@ -7,7 +7,10 @@ namespace TexGenPlus;
 
 public abstract class TextureGeneratorEffect : IJsonConvert
 {
+	public bool Enabled { get; set; } = true;
+
 	public abstract Bitmap Apply( Bitmap bitmap );
+
 	static void IJsonConvert.JsonWrite( object value, Utf8JsonWriter writer )
 	{
 		// Serialize the type name (to support polymorphism) and then serialize the object itself
