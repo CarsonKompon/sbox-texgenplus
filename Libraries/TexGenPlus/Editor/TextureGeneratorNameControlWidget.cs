@@ -9,7 +9,7 @@ namespace TexGenPlus;
 [CustomEditor( typeof( string ), NamedEditor = "TextureGeneratorName" )]
 public class TextureGeneratorNameControlWidget : ControlWidget
 {
-	public TextureGeneratorNameControlWidget ( SerializedProperty property ) : base( property )
+	public TextureGeneratorNameControlWidget( SerializedProperty property ) : base( property )
 	{
 		Layout = Layout.Row();
 		Layout.Spacing = 4;
@@ -19,12 +19,12 @@ public class TextureGeneratorNameControlWidget : ControlWidget
 		Rebuild();
 	}
 
-	protected override void OnPaint ()
+	protected override void OnPaint()
 	{
 
 	}
 
-	public void Rebuild ()
+	public void Rebuild()
 	{
 		Layout.Clear( true );
 
@@ -47,13 +47,18 @@ public class TextureGeneratorNameControlWidget : ControlWidget
 				continue;
 
 			var className = gen.ClassName;
-			comboBox.AddItem( gen.Title, gen.Icon, onSelected: () => SerializedProperty.SetValue( className ), selected: string.Equals( v, className, StringComparison.OrdinalIgnoreCase ) );
+			comboBox.AddItem( gen.Title, gen.Icon, onSelected: () =>
+			{
+				SerializedProperty.SetValue( className );
+				var texgenplus = SerializedProperty.Parent.Targets.First() as TextureGeneratorPlus;
+				texgenplus?.SwitchGenerator( className );
+			}, selected: string.Equals( v, className, StringComparison.OrdinalIgnoreCase ) );
 		}
 
 		Layout.Add( comboBox );
 	}
 
-	protected override void OnValueChanged ()
+	protected override void OnValueChanged()
 	{
 		Rebuild();
 	}

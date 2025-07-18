@@ -13,7 +13,7 @@ public class TextureGeneratorPlusControlWidget : ControlWidget
 		set => SerializedProperty.SetValue( value );
 	}
 
-	public TextureGeneratorPlusControlWidget ( SerializedProperty property ) : base( property )
+	public TextureGeneratorPlusControlWidget( SerializedProperty property ) : base( property )
 	{
 		Layout = Layout.Row();
 		Layout.Spacing = 4;
@@ -23,13 +23,13 @@ public class TextureGeneratorPlusControlWidget : ControlWidget
 		Rebuild();
 	}
 
-	protected override void OnPaint ()
+	protected override void OnPaint()
 	{
 		Paint.SetBrushAndPen( Theme.ControlBackground );
 		Paint.DrawRect( LocalRect, 8 );
 	}
 
-	public void Rebuild ()
+	public void Rebuild()
 	{
 		Layout.Clear( true );
 
@@ -40,14 +40,20 @@ public class TextureGeneratorPlusControlWidget : ControlWidget
 
 		var serializedObject = SerializedProperty.GetValue<object>().GetSerialized();
 		var sheet = new ControlSheet();
+		serializedObject.OnPropertyChanged = OnPropertyChanged;
 		sheet.AddObject( serializedObject, _ => true );
 		scrollable.Canvas.Layout.Add( sheet );
 
 		Layout.Add( scrollable );
 	}
 
-	protected override void OnValueChanged ()
+	protected override void OnValueChanged()
 	{
 		Rebuild();
+	}
+
+	private void OnPropertyChanged( SerializedProperty property )
+	{
+		Generator = Generator;
 	}
 }
