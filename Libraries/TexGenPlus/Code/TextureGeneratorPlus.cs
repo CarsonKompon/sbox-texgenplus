@@ -13,10 +13,10 @@ namespace TexGenPlus;
 [Order( -9999 )]
 [Title( "TextureGenerator+" )]
 [Icon( "add_to_photos" )]
-[ClassName( "spritesheetgenerator" )]
+[ClassName( "texgenplus" )]
 public class TextureGeneratorPlus : TextureGenerator
 {
-	[Editor( "TextureGeneratorName" ), KeyProperty]
+	[Editor( "TextureGeneratorName" ), KeyProperty, Order( -999 )]
 	public string GeneratorName
 	{
 		get => _generatorName;
@@ -31,12 +31,17 @@ public class TextureGeneratorPlus : TextureGenerator
 	[Hide]
 	private string _generatorName = "imagefile";
 
-	[Property, Group( "Generator Settings" ), Editor( "TextureGeneratorPlus" ), WideMode( HasLabel = false ), JsonIgnore]
+	[Property, Group( "Generator Settings" ), Editor( "TextureGeneratorPlus" ), WideMode( HasLabel = false ), Order( 0 ), JsonIgnore]
 	private ResourceGenerator<Texture> Generator
 	{
 		get => _generator;
 		set
 		{
+			if ( value is null )
+			{
+				SwitchGenerator( _generatorName );
+				return;
+			}
 			_generator = value;
 			_resource = _generator?.Create( Options.Default )?.GenerationData ?? new EmbeddedResource
 			{
@@ -66,6 +71,9 @@ public class TextureGeneratorPlus : TextureGenerator
 	}
 	[Hide, JsonIgnore]
 	private EmbeddedResource _resource { get; set; }
+
+	[Property, Group( "Effects" ), Order( 50 ), WideMode( HasLabel = false ), JsonInclude]
+	public List<TextureGeneratorEffect> Effects { get; set; } = new();
 
 	[Hide, JsonIgnore]
 	Dictionary<string, ResourceGenerator<Texture>> _rememberedData = new();
@@ -98,7 +106,12 @@ public class TextureGeneratorPlus : TextureGenerator
 
 	public override ulong GetHash()
 	{
-		return Generator.GetHash();
+		var hash = Generator?.GetHash() ?? 0;
+		foreach ( var effect in Effects )
+		{
+			hash += (ulong)effect.GetHashCode();
+		}
+		return hash;
 	}
 
 }

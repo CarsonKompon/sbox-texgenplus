@@ -6,7 +6,7 @@
       "__version": 1,
       "Flags": 0,
       "Name": "Camera",
-      "Position": "0,0,500",
+      "Position": "127.9997,-1312,500",
       "Rotation": "-0.4999999,0.5,0.4999999,0.5",
       "Scale": "1,1,1",
       "Tags": "",
@@ -65,7 +65,7 @@
           "__enabled": true,
           "Additive": false,
           "CastShadows": true,
-          "Color": "1,1,1,0.12",
+          "Color": "1,1,1,1",
           "DepthFeather": 0,
           "FlipHorizontal": false,
           "FlipVertical": false,
@@ -78,33 +78,33 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "Opaque": false,
-          "Pivot": "0.5,0.5",
+          "Pivot": "0.5,0",
           "RenderOptions": {
             "GameLayer": true,
             "OverlayLayer": false,
             "BloomLayer": false,
             "AfterUILayer": false
           },
-          "Size": "128,128",
+          "Size": "256,256",
           "Texture": {
             "$compiler": "texture",
-            "$source": "spritesheetgenerator",
+            "$source": "texgenplus",
             "data": {
               "GeneratorName": "imagefile",
               "Resource": {
                 "$compiler": "texture",
                 "$source": "imagefile",
                 "data": {
-                  "FilePath": "ninja frog/idle (32x32).png",
-                  "MaxSize": 4096,
+                  "FilePath": "ninja frog/hit (32x32).png",
+                  "MaxSize": 4109,
                   "ConvertHeightToNormals": false,
                   "NormalScale": 1,
                   "Rotate": 0,
                   "FlipVertical": false,
                   "FlipHorizontal": false,
                   "Cropping": {
-                    "Size": "319.401,0",
-                    "EdgeSize": "319.401,0"
+                    "Size": "191.101,0",
+                    "EdgeSize": "191.101,0"
                   },
                   "Padding": {
                     "Size": "0,0",
@@ -123,11 +123,31 @@
                   "CacheToDisk": true
                 },
                 "compiled": null
-              }
+              },
+              "Effects": [
+                {
+                  "Type": "TexGenPlus.Effects.TintEffect",
+                  "Data": {
+                    "TintColor": "1,1,1,1"
+                  }
+                },
+                {
+                  "Type": "TexGenPlus.Effects.TintEffect",
+                  "Data": {
+                    "TintColor": "0.81395,0.16658,0.16658,1"
+                  }
+                },
+                {
+                  "Type": "TexGenPlus.Effects.TintEffect",
+                  "Data": {
+                    "TintColor": "0.36513,0.22812,0.86047,1"
+                  }
+                }
+              ]
             },
             "compiled": null
           },
-          "TextureFilter": "Trilinear"
+          "TextureFilter": "Point"
         }
       ],
       "Children": []

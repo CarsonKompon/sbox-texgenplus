@@ -33,16 +33,23 @@ public class TextureGeneratorPlusControlWidget : ControlWidget
 	{
 		Layout.Clear( true );
 
+		if ( SerializedProperty is null )
+			return;
+
 		var scrollable = new ScrollArea( this );
 		scrollable.Canvas = new Widget();
 		scrollable.MaximumHeight = 250;
 		scrollable.Canvas.Layout = Layout.Column();
 
-		var serializedObject = SerializedProperty.GetValue<object>().GetSerialized();
-		var sheet = new ControlSheet();
-		serializedObject.OnPropertyChanged = OnPropertyChanged;
-		sheet.AddObject( serializedObject, _ => true );
-		scrollable.Canvas.Layout.Add( sheet );
+		var val = SerializedProperty?.GetValue<object>();
+		if ( val is not null )
+		{
+			var serializedObject = val?.GetSerialized();
+			var sheet = new ControlSheet();
+			serializedObject.OnPropertyChanged = OnPropertyChanged;
+			sheet.AddObject( serializedObject, _ => true );
+			scrollable.Canvas.Layout.Add( sheet );
+		}
 
 		Layout.Add( scrollable );
 	}
