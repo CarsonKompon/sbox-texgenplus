@@ -8,9 +8,10 @@ public class TintEffect : TextureGeneratorEffect
 	[Property, KeyProperty]
 	public Color TintColor { get; set; } = Color.White;
 
-	public override void Apply( Bitmap bitmap )
+	public override Bitmap Apply( Bitmap bitmap )
 	{
 		bitmap.Tint( TintColor );
+		return bitmap;
 	}
 
 	public override int GetHashCode()

@@ -108,7 +108,7 @@ public class TextureGeneratorPlus : TextureGenerator
 
 		foreach ( var effect in Effects )
 		{
-			effect?.Apply( bitmap );
+			bitmap = effect?.Apply( bitmap );
 		}
 
 		return bitmap.ToTexture();
