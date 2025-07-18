@@ -65,7 +65,7 @@
           "__enabled": true,
           "Additive": false,
           "CastShadows": true,
-          "Color": "1,1,1,1",
+          "Color": "1,1,1,0.12",
           "DepthFeather": 0,
           "FlipHorizontal": false,
           "FlipVertical": false,
@@ -77,7 +77,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Opaque": true,
+          "Opaque": false,
           "Pivot": "0.5,0.5",
           "RenderOptions": {
             "GameLayer": true,
@@ -90,12 +90,44 @@
             "$compiler": "texture",
             "$source": "spritesheetgenerator",
             "data": {
-              "GeneratorName": "color",
-              "Generator": {}
+              "GeneratorName": "imagefile",
+              "Resource": {
+                "$compiler": "texture",
+                "$source": "imagefile",
+                "data": {
+                  "FilePath": "ninja frog/idle (32x32).png",
+                  "MaxSize": 4096,
+                  "ConvertHeightToNormals": false,
+                  "NormalScale": 1,
+                  "Rotate": 0,
+                  "FlipVertical": false,
+                  "FlipHorizontal": false,
+                  "Cropping": {
+                    "Size": "319.401,0",
+                    "EdgeSize": "319.401,0"
+                  },
+                  "Padding": {
+                    "Size": "0,0",
+                    "EdgeSize": "0,0"
+                  },
+                  "InvertColor": false,
+                  "Tint": "1,1,1,1",
+                  "Blur": 0,
+                  "Sharpen": 0,
+                  "Brightness": 1,
+                  "Contrast": 1,
+                  "Saturation": 1,
+                  "Hue": 0,
+                  "Colorize": false,
+                  "TargetColor": "0,1,0,1",
+                  "CacheToDisk": true
+                },
+                "compiled": null
+              }
             },
             "compiled": null
           },
-          "TextureFilter": "Bilinear"
+          "TextureFilter": "Trilinear"
         }
       ],
       "Children": []
