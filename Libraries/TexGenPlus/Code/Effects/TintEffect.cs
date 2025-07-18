@@ -15,6 +15,6 @@ public class TintEffect : TextureGeneratorEffect
 
 	public override int GetHashCode()
 	{
-		return TintColor.GetHashCode();
+		return System.HashCode.Combine( TintColor.Hex );
 	}
 }

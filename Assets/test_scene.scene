@@ -95,7 +95,7 @@
                 "$compiler": "texture",
                 "$source": "imagefile",
                 "data": {
-                  "FilePath": "ninja frog/hit (32x32).png",
+                  "FilePath": "ninja frog/double jump (32x32).png",
                   "MaxSize": 4109,
                   "ConvertHeightToNormals": false,
                   "NormalScale": 1,
@@ -103,8 +103,8 @@
                   "FlipVertical": false,
                   "FlipHorizontal": false,
                   "Cropping": {
-                    "Size": "191.101,0",
-                    "EdgeSize": "191.101,0"
+                    "Size": "159.3012,0",
+                    "EdgeSize": "159.3012,0"
                   },
                   "Padding": {
                     "Size": "0,0",
@@ -128,19 +128,7 @@
                 {
                   "Type": "TexGenPlus.Effects.TintEffect",
                   "Data": {
-                    "TintColor": "1,1,1,1"
-                  }
-                },
-                {
-                  "Type": "TexGenPlus.Effects.TintEffect",
-                  "Data": {
-                    "TintColor": "0.81395,0.16658,0.16658,1"
-                  }
-                },
-                {
-                  "Type": "TexGenPlus.Effects.TintEffect",
-                  "Data": {
-                    "TintColor": "0.36513,0.22812,0.86047,1"
+                    "TintColor": "0.76744,0.14278,0.14278,1"
                   }
                 }
               ]

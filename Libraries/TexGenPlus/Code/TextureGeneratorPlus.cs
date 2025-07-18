@@ -64,7 +64,6 @@ public class TextureGeneratorPlus : TextureGenerator
 			if ( _generator is null )
 			{
 				Generator = TextureGenerator.Create<Texture>( value );
-				Log.Info( Json.Serialize( value ) );
 			}
 			_resource = value;
 		}
@@ -77,6 +76,9 @@ public class TextureGeneratorPlus : TextureGenerator
 
 	[Hide, JsonIgnore]
 	Dictionary<string, ResourceGenerator<Texture>> _rememberedData = new();
+
+	[Property, Hide, JsonInclude]
+	public int RandomNumber { get; set; }
 
 	public TextureGeneratorPlus()
 	{
@@ -101,7 +103,15 @@ public class TextureGeneratorPlus : TextureGenerator
 			return Texture.Invalid;
 		}
 
-		return await Generator.CreateAsync( options, ct );
+		var tex = await Generator.CreateAsync( options, ct );
+		var bitmap = tex.GetBitmap( 0 );
+
+		foreach ( var effect in Effects )
+		{
+			effect?.Apply( bitmap );
+		}
+
+		return bitmap.ToTexture();
 	}
 
 	public override ulong GetHash()
@@ -109,8 +119,9 @@ public class TextureGeneratorPlus : TextureGenerator
 		var hash = Generator?.GetHash() ?? 0;
 		foreach ( var effect in Effects )
 		{
-			hash += (ulong)effect.GetHashCode();
+			hash += (ulong)Math.Abs( effect?.GetHashCode() ?? 0 );
 		}
+		hash += (ulong)Math.Abs( RandomNumber );
 		return hash;
 	}
 

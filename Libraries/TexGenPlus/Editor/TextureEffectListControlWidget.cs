@@ -64,6 +64,23 @@ public class ListControlWidget : ControlWidget
 		Rebuild();
 	}
 
+	[EditorEvent.Frame]
+	private void Frame()
+	{
+		var parent = SerializedProperty.Parent.Targets.FirstOrDefault() as TextureGeneratorPlus;
+		var hash = 0;
+		foreach ( var effect in parent.Effects )
+		{
+			hash += (effect?.GetHashCode() ?? 0);
+		}
+
+		var randomProp = SerializedProperty.Parent.GetProperty( nameof( TextureGeneratorPlus.RandomNumber ) );
+		if ( randomProp is not null )
+		{
+			randomProp.SetValue( hash );
+		}
+	}
+
 	private void RefreshCollection()
 	{
 		var value = SerializedProperty?.GetValue<object>();
@@ -97,7 +114,7 @@ public class ListControlWidget : ControlWidget
 		if ( Collection is not null )
 		{
 			var hash = ValueHash;
-			if ( buildHash.HasValue && hash == buildHash.Value ) return;
+			//if ( buildHash.HasValue && hash == buildHash.Value ) return;
 			buildHash = hash;
 		}
 
@@ -264,12 +281,9 @@ public class ListControlWidget : ControlWidget
 
 		preventRebuild = true;
 
-		foreach ( var prop in SerializedProperty.MultipleProperties )
-		{
-			var collection = GetCollection( prop );
-			if ( collection is null ) continue;
-			Move( collection, index, delta );
-		}
+		var collection = GetCollection( SerializedProperty );
+		if ( collection is null ) return;
+		Move( collection, index, delta );
 
 		preventRebuild = false;
 		Rebuild();
